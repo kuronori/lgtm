@@ -8,6 +8,8 @@ Created on Sun Jul 19 09:41:39 2020
 
 
 import click
+from lgtm.drawer import save_with_message
+from lgtm.image_source import get_image
 
 @click.command()
 @click.option("--message","-m",default="LGTM",
@@ -16,8 +18,8 @@ import click
 def cli(keyword,message):
     """LGTM画像生成ツール"""
     lgtm(keyword,message)
-    click.echo("lgtm") #動作確認用
 
 def lgtm(keyword,message):
-    #ここにロジックを追加していく
+    with get_image(keyword) as fp:
+        save_with_message(fp,message)
     pass
